@@ -1,0 +1,65 @@
+Notes on "Abandon Nitrite" project for SWMP at Lake Superior NERR 2/13/2024
+
+Hannah Ramage investigates if NO2 is worth continuing to analyze for SWMP samples given the number of MDLs in data.
+The statement in the SWMP Nutrient SOP goes like this:
+
+"If a reserve can show that NO2- is a minor component relative to NO3-, NO3- + NO2- can be substituted for individual analysis."
+
+Melissa Ide (CDMO) says there is no specific process for showing this, it is up to the Reserve to evaluate and determine so...
+
+My questions are
+
+1. What percentage of nitrite sample to date are below MDL? Target 50% seems like too much.
+  Does this percentage vary by site?
+2. When above MDL what is the proporation of NO2 to No3? Less than 0.1 (or 1:10) on average seems like too little to bother with
+3. Look at the proportion by site to ensure it isn't really important for some sites but not others.
+4. Lastly, if there a strong correlation between NO2 an NO that would be another reason to ditch it because it isn't tell us anything unique.
+
+
+###notes on process and code
+All data from LKS NERR obtained from CDMO on 1/12/02024
+
+Data combined for all sites
+
+Filtered out all rejected and suspected data (there were issues with NO2 sometimes when in house analysis was happening so this mostly filters out old data that was flagged)
+
+That left 625 samples to analyze.
+
+Counted out how many were below MDL (note that MDL was not uniform throughout time, so I am counting if it is flagged <-4>) - that number is 303
+
+1. Percent below MDL is 48.5%
+
+This is how percentages below MDL break out by site. Important to note that there are a lot more samples at barker's because of the diel samples. 
+
+        id   percent_below_mdl
+  barkers  38.18616
+  blatnik  45.20548
+   oliver  69.62025
+ pokegama  70.51282
+ 
+ Now I filter out all the samples below mdl to look at the NO2 values we have. 
+ 
+First there is just a plot of the distribution on NO2 by each site showing that barker's and blatnik definitely have higher values than oliver and pokegama. That tracks with the early finding that oliver and pokegama have many more below mdl values as well. 
+
+output plot - no2_distribution_bysite.png - the red numbers are the count (n)
+ 
+To find the proportion on NO2 to NO3 at each site, first filter our all rejected, suspect, and below MDL data.Also, drop all rows that have an NAs for all NO2, NO23, or NO3. 
+
+output plot - no3_distribution_bysite.png
+
+barkers and blatnik have much higher levels of NO3 than Oliver and pokegema. ol and po have <0.05 mg/l medians
+
+calculated a new parameter no2_proportion which is just NO2/NO3
+
+2. proportion of no2 to no3 is very low for barkers and blatnik with medians <0.1. oliver is just over 0.1 and pokegama is well above. HOWEVER NO3 is very low for pokegama and 70% of it's no2 values were below mdl. 
+
+
+
+
+
+
+
+
+
+
+
